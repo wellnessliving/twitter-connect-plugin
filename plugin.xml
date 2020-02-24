@@ -57,13 +57,7 @@
 		<source-file src="src/ios/TwitterConnect.m" />
 		<header-file src="src/ios/AppDelegate+TwitterConnect.h" />
 		<source-file src="src/ios/AppDelegate+TwitterConnect.m" />
-		<!-- Must not link TwitterCore.framework or otherwise will get the runtime warnings discribed here: https://github.com/twitter/twitter-kit-ios/issues/91, https://github.com/twitter/twitter-kit-ios/issues/18 -->
-		<source-file src="src/ios/TwitterKit.framework" target-dir="lib" framework="true" />
-		<!-- TwitterKit.framework and TwitterCore.framework must be embedded or otherwise there is a runtime dyld missing library error -->
-		<framework src="src/ios/TwitterKit.framework" custom="true" embed="true" />
-		<framework src="src/ios/TwitterCore.framework" custom="true" embed="true" />
 		<framework src="SafariServices.framework" />
-		<resource-file src="src/ios/TwitterKit.framework/TwitterKitResources.bundle" />
 		<config-file target="*-Info.plist" parent="CFBundleURLTypes">
 			<array>
 				<dict>
@@ -80,5 +74,15 @@
 				<string>twitterauth</string>
 			</array>
 		</config-file>
+		<!-- Twitter SDK -->
+		<podspec>
+			<config>
+				<source url="https://cdn.cocoapods.org/"/>
+			</config>
+			<pods use-frameworks="true">
+				<pod name="TwitterCore" spec="3.2.0"/>
+				<pod name="TwitterKit5" spec="5.1.0"/>
+			</pods>
+		</podspec>
 	</platform>
 </plugin>
